@@ -25,9 +25,26 @@
 <!--////////////////-->
 
 <section id="profile" data-role="page">
+    <form data-role="content">
+        <div class="box">
+            <label>Name :</label><br>
+            <label>Phone :</label><br>
+            <label>Email :</label><br>
+            <label>Gender :</label>
+        </div>
 
 
-
+        <div class="box">
+            <input class="formInputs" id="fName" required="true" type="text"><br>
+            <input class="formInputs" id="lName" type="text"><br>
+            <input class="formInputs" id="DOB" required="true" type="date"><br>
+            <input class="formInputs" id="department" type="text">
+        </div>
+        <div>
+            <input id="createContactBtn" onclick="createContact()" type="button" value="Save Contact">
+            <input id="cancletBtn" onclick="cancle()" type="button" value="Save Contact">
+        </div>
+    </form>
 </section>
 
 <!--////////////////-->
