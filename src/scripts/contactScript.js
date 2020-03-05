@@ -16,14 +16,34 @@ function drawContactsList() {
 }
 
 function addContactToList(contact) {
-    /////(1)get parent node
-    createContactListItem(contact);
-    ////(3)appanding node to the parent
+
+    ///// (1)get parent node
+    var newRow = createContactListItem(contact);
+
+    ///// (2)appending node to the parent
+    $("#contactsList").append(newRow);
+
 }
 
 
 ////creating node html
 function createContactListItem(contact) {
+
+    //most parent element in a list row
+    var motherListItem = $("<li class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
+
+    // <a> tag that represents the name and contains the image
+    profileImageURL = contact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+    var imageLink = $("<a id=" + contact.id + " class='ui-btn' href='#'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
+
+    //the button on the right
+    var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
+        "class='ui-btn ui-btn-icon-notext ui-icon-phone' title=''></a>");
+
+    motherListItem.append(imageLink);
+    motherListItem.append(button);
+
+    return motherListItem;
 
 }
 
@@ -43,6 +63,7 @@ function contact(id, name, phone, email, gender) {
     this.id = id;
     this.name = name;
     this.email = email;
+    this.phone = phone;
     this.gender = gender;
 }
 

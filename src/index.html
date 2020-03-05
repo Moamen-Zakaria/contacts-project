@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="styles/jquery-mobile-theme-034709-0/themes/contacts-style.min.css"/>
     <link rel="stylesheet" href="styles/jquery-mobile-theme-034709-0/themes/jquery.mobile.icons.min.css"/>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css"/>
+    <script src="scripts/contactScript.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,18 +28,17 @@
 
     <header data-role="header">
 
+        <a href="#createContact" data-icon="plus" data-transition="flip" class="ui-btn-left">Add</a>
+
         Contact List
 
     </header>
 
+    <section data-role="content">
+        <ul id="contactsList" data-role="listview" data-inset="true" data-filter="true">
 
-    <ul data-role="listview" data-icon="phone" data-inset="true" data-filter="true">
-        <li><a href="#"> <img src="styles/icons/male.png" width="100%" height="90git%"/>  Acura</a></li>
-        <li><a href="#">Audi</a></li>
-        <li><a href="#">BMW</a></li>
-        <li><a href="#">Cadillac</a></li>
-        <li><a href="#">Ferrari</a></li>
-    </ul>
+        </ul>
+    </section>
 
     <footer data-role="footer">
 
