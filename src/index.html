@@ -23,53 +23,67 @@
 <!--        <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div>-->
 <!--</li>-->
 
-<section id="home" data-role="page">
+<!--<section id="home" data-role="page">-->
+<!--&lt;!&ndash;<section id="home" data-role="page">&ndash;&gt;-->
 
-    <header data-role="header">
+<!--    <header data-role="header">-->
 
-        Contact List
+<!--        Contact List-->
 
-    </header>
+<!--    </header>-->
 
-    <ul data-role="listview" data-icon="phone" data-inset="true" data-filter="true">
-        <li><a href="#">Acura</a></li>
-        <li><a href="#">Audi</a></li>
-        <li><a href="#">BMW</a></li>
-        <li><a href="#">Cadillac</a></li>
-        <li><a href="#">Ferrari</a></li>
-    </ul>
+<!--    <ul data-role="listview" data-icon="phone" data-inset="true" data-filter="true">-->
+<!--        <li><a href="#">Acura</a></li>-->
+<!--        <li><a href="#">Audi</a></li>-->
+<!--        <li><a href="#">BMW</a></li>-->
+<!--        <li><a href="#">Cadillac</a></li>-->
+<!--        <li><a href="#">Ferrari</a></li>-->
+<!--    </ul>-->
 
-    <footer data-role="footer">
+<!--    <footer data-role="footer">-->
 
-        Contact List
+<!--        Contact List-->
 
-    </footer>
+<!--    </footer>-->
 
-</section>
+<!--</section>-->
 
 <!--////////////////-->
 <!--////////////////-->
 
 <section id="profile" data-role="page">
+
+    <header data-role="header">
+        Contact List
+    </header>
+
     <form data-role="content">
         <div class="box">
-            <label>Name :</label><br>
-            <label>Phone :</label><br>
-            <label>Email :</label><br>
-            <label>Gender :</label>
+            <label class="labels">Name :</label><br>
+            <label class="labels">Phone :</label><br>
+            <label class="labels">Email :</label><br>
         </div>
 
 
         <div class="box">
-            <input class="formInputs" id="fName" required="true" type="text"><br>
-            <input class="formInputs" id="lName" type="text"><br>
-            <input class="formInputs" id="DOB" required="true" type="date"><br>
-            <input class="formInputs" id="department" type="text">
+            <input id="name" required="true" type="text"><br>
+            <input id="phone" type="text"><br>
+            <input id="email" required="true" type="text"><br>
+            <label for="flip-checkbox-3">Gender :</label>
+            <input data-off-text="Female" data-on-text="Male" data-role="flipswitch"
+                   data-wrapper-class="custom-size-flipswitch"
+                   id="flip-checkbox-3" name="flip-checkbox-3" type="checkbox">
         </div>
-        <div>
+
+        <div class="twoBtn">
             <input id="createContactBtn" onclick="createContact()" type="button" value="Save Contact">
-            <input id="cancletBtn" onclick="cancle()" type="button" value="Save Contact">
         </div>
+
+        <div class="twoBtn">
+            <input id="cancletBtn" onclick="cancle()" type="button" value="Cancle">
+        </div>
+
+
     </form>
 </section>
 

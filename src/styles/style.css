@@ -14,8 +14,42 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    width : 100%;
+    width: 100%;
 
 }
 
 /*Naggar*/
+
+#profile header {
+
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+
+}
+
+#profile footer {
+
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+
+#profile .labels {
+    margin: 15px;
+
+}
+
+
+#profile .box {
+    float: left;
+}
+
+#profile .twoBtn {
+    width: 30%;
+    margin: 20px;
+    float: left;
+}
