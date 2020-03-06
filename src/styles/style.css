@@ -28,14 +28,14 @@
 
 /*Naggar*/
 
-#profile header {
+#createContact header {
 
     text-align: center;
     padding: 10px 10px 10px 10px;
 
 }
 
-#profile footer {
+#createContact footer {
 
     text-align: center;
     padding: 10px 10px 10px 10px;
@@ -46,17 +46,17 @@
 
 }
 
-#profile .labels {
+#createContact .labels {
     margin: 15px;
 
 }
 
 
-#profile .box {
+#createContact .box {
     float: left;
 }
 
-#profile .twoBtn {
+#createContact .twoBtn {
     width: 30%;
     margin: 20px;
     float: left;
