@@ -54,9 +54,10 @@ function createContactListItem(contact) {
 
 }
 
-$("#saveBtn").bind("click", function (envent) {
-    createContact();
-});
+// $(document).ready( $("#saveBtn").bind("click", function () {
+//     createContact();
+// }));
+
 
 function createContact() {
     var id = getAutoGenratedId();
@@ -65,15 +66,11 @@ function createContact() {
     var email = $("#email").val();
     var gender = $("#flip").val()
     console.log("name");
-    var contact = new contact(id, name, phone, email, gender);
+    ////using var caused not a constructor error
+    contact = new contact(id, name, phone, email, gender);
     contacts.push(contact);
     addContactToList(contact);
     saveContactToLocalStorage();
-}
-
-function saveContactToLocalStorage() {
-    const myJson = JSON.stringify(contacts);
-    window.localStorage.setItem("contacts", myJson);
 }
 
 function contact(id, name, phone, email, gender) {
@@ -83,6 +80,13 @@ function contact(id, name, phone, email, gender) {
     this.phone = phone;
     this.gender = gender;
 }
+
+
+function saveContactToLocalStorage() {
+    const myJson = JSON.stringify(contacts);
+    window.localStorage.setItem("contacts", myJson);
+}
+
 
 function getAutoGenratedId() {
     idCounter++;
@@ -99,5 +103,3 @@ function nameValidation(name) {
     }
     return false;
 }
-
-

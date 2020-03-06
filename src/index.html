@@ -24,43 +24,44 @@
 <!--        <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div>-->
 <!--</li>-->
 
-<section data-role="page" id="home">
+<!--<section data-role="page" id="home">-->
 
-    <header data-role="header">
+<!--    <header data-role="header">-->
 
-        <a class="ui-btn-left" data-icon="plus" data-transition="flip" href="#createContact">Add</a>
+<!--        <a class="ui-btn-left" data-icon="plus" data-transition="flip" href="#createContact">Add</a>-->
 
-        Contact List
+<!--        Contact List-->
 
-    </header>
+<!--    </header>-->
 
-    <section data-role="content">
-        <ul data-filter="true" data-inset="true" data-role="listview" id="contactsList">
+<!--    <section data-role="content">-->
+<!--        <ul data-filter="true" data-inset="true" data-role="listview" id="contactsList">-->
 
-        </ul>
-    </section>
+<!--        </ul>-->
+<!--    </section>-->
 
-    <footer data-role="footer">
+<!--    <footer data-role="footer">-->
 
-        Contact List
+<!--        Contact List-->
 
-    </footer>
+<!--    </footer>-->
 
-</section>
+<!--</section>-->
 
 <!--////////////////-->
 <!--////////////////-->
 
-<section data-role="page" id="profile">
+<!--<section data-role="page" id="profile">-->
 
 
-</section>
+<!--</section>-->
 
 <!--////////////////-->
 <!--////////////////-->
 
 <section id="createContact" data-role="page">
     <header class="ui-header ui-bar-inherit" data-role="header" role="banner">
+        <a class="ui-btn-left" data-icon="arrow-l" data-transition="flip" href="#home">Add</a>
         New Contact
     </header>
 
@@ -92,17 +93,13 @@
             </div>
 
             <div data-type="horizontal">
-                <input data-icon="check" data-iconpos="right" data-inline="true" data-role="button" id="saveBtn"
-                       name="saveBtn"
-                       onclick="createContact()" type="button" value="Save Contact">
-                <div class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right">
-                    Cancle<input data-enhanced="true" data-role="button" id="cancleBtn" name="cancleBtn"
-                                 onclick="cancle()" type="button">
-                </div>
+                <a class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-check ui-btn-icon-right"
+                   data-role="button" onclick="createContact()">Save Contact</a>
+                <a class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right"
+                   data-role="button" data-transition="flip" href="#home">Cacle</a>
             </div>
         </div>
     </form>
-
 
     <footer class="ui-footer ui-bar-inherit" data-role="footer" role="contentinfo">
         New Contact
