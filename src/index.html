@@ -41,8 +41,35 @@
 <!--////////////////-->
 <!--////////////////-->
 
-<section id="profile" data-role="page">
+<section id="profile" data-role="page"  data-add-back-btn="true">
 
+    <header id="profileHeader"  data-role="header">
+
+        <a href="#home" data-icon="carat-l" data-transition="flip" class="ui-btn-left">Back</a>
+
+        <span id="profileName">ContactName</span>
+
+    </header>
+
+    <section data-role="content">
+
+        <img id="profileImage" src="styles/icons/female.svg">
+        <br/><br/>
+        <b>Email : <span id="profileEmail">navras@JunoReactor.com</span></b>
+
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="index.html" data-icon="delete" data-role="button"></a>
+            <a href="" data-icon="edit" data-role="button" ></a>
+            <a id="profileCallLink" href="index.html" data-icon="phone" data-role="button" ></a>
+        </div>
+
+    </section>
+
+    <footer data-role="footer">
+
+        Contact List
+
+    </footer>
 
 </section>
 
@@ -105,6 +132,12 @@
 
 
 </section>
+
+<script>
+
+    addContactToList( new contact(1 , "dd" , "01000516" , "cdscdc" , "male") );
+
+</script>
 
 </body>
 </html>

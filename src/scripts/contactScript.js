@@ -1,11 +1,38 @@
 let contacts = [];
 let idCounter = 0;
 
-let currentContactIDViewedInProfile;
-
 function viewContactOnProfilePage(contactID){
 
+    var profileContact = getContactByID(contactID);
+    if(contact != false){
 
+        profileImageURL = profileContact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+
+
+        $("#profileName").html(profileContact.name);
+        $("#profileCallLink").attr("href","tel:"+profileContact.phone);
+        $("#profileEmail").html(profileContact.email);
+        $("#profileImage").attr("src" , profileImageURL);
+
+    }
+
+}
+
+function getContactByID(){
+
+    getcontactsArrayFromLocalStorage();
+
+    for(var i = 0 ; i < contacts.length ; i++){
+
+        if(contacts[i].id == contactID){
+
+            return contacts[i];
+
+        }
+
+    }
+
+    return false;
 
 }
 
@@ -15,7 +42,15 @@ function refresh() {
 }
 
 function getcontactsArrayFromLocalStorage() {
-    contacts = JSON.parse(localStorage.getItem("contacts"));
+    var arrayOfContacts  = localStorage.getItem("contacts");
+    if(arrayOfContacts != null){
+
+        contacts = JSON.parse(arrayOfContacts);
+
+    }else{
+
+        contacts = [];
+    }
 }
 
 function drawContactsList() {
@@ -41,7 +76,7 @@ function createContactListItem(contact) {
 
     // <a> tag that represents the name and contains the image
     profileImageURL = contact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-    var imageLink = $("<a id=" + contact.id + " onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
+    var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
 
     //the button on the right
     var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
