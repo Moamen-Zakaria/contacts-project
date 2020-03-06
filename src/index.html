@@ -53,6 +53,13 @@
 
 <section id="profile" data-role="page">
 
+
+</section>
+
+<!--////////////////-->
+<!--////////////////-->
+
+<section id="createContact" data-role="page">
     <header data-role="header">
         Contact List
     </header>
@@ -69,10 +76,17 @@
             <input id="name" required="true" type="text"><br>
             <input id="phone" type="text"><br>
             <input id="email" required="true" type="text"><br>
-            <label for="flip-checkbox-3">Gender :</label>
-            <input data-off-text="Female" data-on-text="Male" data-role="flipswitch"
-                   data-wrapper-class="custom-size-flipswitch"
-                   id="flip-checkbox-3" name="flip-checkbox-3" type="checkbox">
+             
+            <div class="ui-field-contain">
+                        <label for="flip-6">Gender:</label>
+                        <select data-role="flipswitch" id="flip-6" name="flip-6">
+                            
+                <option value="off">Male</option>
+                            
+                <option value="on">Femalee</option>
+                        </select>
+                    
+            </div>
         </div>
 
         <div class="twoBtn">
@@ -85,13 +99,12 @@
 
 
     </form>
-</section>
 
-<!--////////////////-->
-<!--////////////////-->
+    <footer data-role="footer">
 
-<section id="createContact" data-role="page">
+        Contact List
 
+    </footer>
 
 </section>
 
