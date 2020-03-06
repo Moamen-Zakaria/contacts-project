@@ -53,11 +53,10 @@
 
 }
 
-#createContact .labels {
-    margin: 15px;
+#createContact #phone, #name, #email, #flip {
+    margin: 5px;
 
 }
-
 
 #createContact #cancleBtn , #saveBtn {
     width: 30%;

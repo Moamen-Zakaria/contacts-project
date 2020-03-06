@@ -1,41 +1,33 @@
 let contacts = [];
-let idCounter = 0;
+var idCounter = 0;
 
 let currentContactIDViewedInProfile;
 
-function viewContactOnProfilePage(contactID){
+function viewContactOnProfilePage(contactID) {
 
     var profileContact = getContactByID(contactID);
-    if(contact != false){
+    if (contact != false) {
 
         profileImageURL = profileContact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
 
 
         $("#profileName").html(profileContact.name);
-        $("#profileCallLink").attr("href","tel:"+profileContact.phone);
+        $("#profileCallLink").attr("href", "tel:" + profileContact.phone);
         $("#profileEmail").html(profileContact.email);
-        $("#profileImage").attr("src" , profileImageURL);
+        $("#profileImage").attr("src", profileImageURL);
 
     }
 
 }
 
-function getContactByID(contactID){
-
+function getContactByID(contactID) {
     getcontactsArrayFromLocalStorage();
-
-    for(var i = 0 ; i < contacts.length ; i++){
-
-        if(contacts[i].id == contactID){
-
+    for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].id == contactID) {
             return contacts[i];
-
         }
-
     }
-
     return false;
-
 }
 
 function refresh() {
@@ -44,57 +36,44 @@ function refresh() {
 }
 
 function getcontactsArrayFromLocalStorage() {
-    var arrayOfContacts  = localStorage.getItem("contacts");
-    if(arrayOfContacts != null){
-
+    var arrayOfContacts = localStorage.getItem("contacts");
+    if (arrayOfContacts != null) {
         contacts = JSON.parse(arrayOfContacts);
-
-    }else{
-
+    } else {
         contacts = [];
     }
 }
 
+///getting contacts from local storage to be displayed
 function drawContactsList() {
     contacts.forEach(contact => addContactToList(contact));
 }
 
+///adding new object to the contact list
 function addContactToList(contact) {
-
     ///// (1)get parent node
     var newRow = createContactListItem(contact);
-
     ///// (2)appending node to the parent
     $("#contactsList").append(newRow);
-
 }
 
 
 ////creating node html
 function createContactListItem(contact) {
-
     //most parent element in a list row
     var motherListItem = $("<li class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
-
     // <a> tag that represents the name and contains the image
     profileImageURL = contact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-    var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
-
+    var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage(" + contact.id + ")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
     //the button on the right
     var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
         "class='ui-btn ui-btn-icon-notext ui-icon-phone' title=''></a>");
-
     motherListItem.append(imageLink);
     motherListItem.append(button);
-
     return motherListItem;
-
 }
 
-$("#saveBtn").bind("click", function (envent) {
-    createContact();
-});
-
+// getting data from the form
 function createContact() {
     var id = getAutoGenratedId();
     var name = $("#name").val();
@@ -102,18 +81,19 @@ function createContact() {
     var email = $("#email").val();
     var gender = $("#flip").val()
     console.log("name");
-    ////using var caused not a constructor error
-    contact = new contact(id, name, phone, email, gender);
-    contacts.push(contact);
-    addContactToList(contact);
+    var newContact = new contact(id, name, phone, email, gender);
+    contacts.push(newContact);
+    addContactToList(newContact);
     saveContactToLocalStorage();
 }
 
+////save object to local storage
 function saveContactToLocalStorage() {
     const myJson = JSON.stringify(contacts);
     window.localStorage.setItem("contacts", myJson);
 }
 
+////constructor function
 function contact(id, name, phone, email, gender) {
     this.id = id;
     this.name = name;
@@ -122,6 +102,7 @@ function contact(id, name, phone, email, gender) {
     this.gender = gender;
 }
 
+/// function to generate  ids
 function getAutoGenratedId() {
     idCounter++;
     return idCounter;
@@ -138,9 +119,10 @@ function nameValidation(name) {
     return false;
 }
 
-function onload(){
+////function to refresh the list in first page
+function onload() {
 
-    refresh();git
+    refresh();
     // $("#saveBtn").bind( "click" , function () {
     //     alert("ddd");
     //     createContact();
