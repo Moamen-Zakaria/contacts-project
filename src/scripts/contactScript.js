@@ -54,10 +54,20 @@ function createContactListItem(contact) {
 
 }
 
+$("#saveBtn").bind("click", function (envent) {
+    createContact();
+});
+
 function createContact() {
-    con = new contact();
-    contacts.push(con);
-    addContactToList(con);
+    var id = getAutoGenratedId();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var email = $("#email").val();
+    var gender = $("#flip").val()
+    console.log("name");
+    var contact = new contact(id, name, phone, email, gender);
+    contacts.push(contact);
+    addContactToList(contact);
     saveContactToLocalStorage();
 }
 
