@@ -12,20 +12,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body onload="onload()">
 
-<section id="home" data-role="page">
+<section data-role="page" id="home">
 
     <header data-role="header">
 
-        <a href="#createContact" data-icon="plus" data-transition="flip" class="ui-btn-left">Add</a>
+        <a class="ui-btn-left" data-icon="plus" data-transition="flip" href="#createContact">Add</a>
 
         Contact List
 
     </header>
 
     <section data-role="content">
-        <ul id="contactsList" data-role="listview" data-inset="true" data-filter="true">
+        <ul data-filter="true" data-inset="true" data-role="listview" id="contactsList">
 
         </ul>
     </section>
@@ -77,52 +77,53 @@
 <!--////////////////-->
 
 <section id="createContact" data-role="page">
-    <header data-role="header">
-        Contact List
+    <header class="ui-header ui-bar-inherit" data-role="header" role="banner">
+        New Contact
     </header>
 
-    <form data-role="content">
-        <div class="box">
-            <label class="labels">Name :</label><br>
-            <label class="labels">Phone :</label><br>
-            <label class="labels">Email :</label><br>
-        </div>
+    <form class="ui-content" data-role="content" role="main">
 
+        <div>
+            <!--contact Name-->
+            <label class="ui-hidden-accessible" for="name">contact name:</label>
+            <input data-theme="a" id="name" name="name" placeholder="username" type="text" value="">
 
-        <div class="box">
-            <input id="name" required="true" type="text"><br>
-            <input id="phone" type="text"><br>
-            <input id="email" required="true" type="text"><br>
-             
+            <!--phone -->
+            <label class="ui-hidden-accessible" for="phone">phone :</label>
+            <input data-clear-btn="true" id="phone" name="phone" placeholder="Phone Number"
+                   type="tel" value="">
+
+            <!--email-->
+            <label class="ui-hidden-accessible" for="email">email:</label>
+            <input data-clear-btn="true" id="email" name="email"
+                   placeholder="Email"
+                   type="email" value="">
+
+            <!--flip toggle-->
             <div class="ui-field-contain">
-                        <label for="flip-6">Gender:</label>
-                        <select data-role="flipswitch" id="flip-6" name="flip-6">
-                            
-                <option value="off">Male</option>
-                            
-                <option value="on">Femalee</option>
-                        </select>
-                    
+                <label class="ui-hidden-accessible" for="flip">Gender:</label>
+                <select class="ui-flipswitch-input" data-role="flipswitch" id="flip" name="flip" tabindex="-1">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+<!--            id="saveBtn"-->
+            <div data-type="horizontal">
+                <input data-icon="check" data-iconpos="right" data-inline="true" data-role="button"
+                       name="saveBtn"
+                       onclick="createContact()" type="button" value="Save Contact">
+                <div href="#home"  class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right">
+                    Cancle<input data-enhanced="true" data-role="button" id="cancleBtn" name="cancleBtn"
+                                  type="button">
+                </div>
             </div>
         </div>
-
-        <div class="twoBtn">
-            <input id="createContactBtn" onclick="createContact()" type="button" value="Save Contact">
-        </div>
-
-        <div class="twoBtn">
-            <input id="cancletBtn" onclick="cancle()" type="button" value="Cancle">
-        </div>
-
-
     </form>
 
-    <footer data-role="footer">
 
-        Contact List
-
+    <footer class="ui-footer ui-bar-inherit" data-role="footer" role="contentinfo">
+        New Contact
     </footer>
-
 </section>
 
 <!--////////////////-->
@@ -132,12 +133,6 @@
 
 
 </section>
-
-<script>
-
-    addContactToList( new contact(1 , "dd" , "01000516" , "cdscdc" , "male") );
-
-</script>
 
 </body>
 </html>

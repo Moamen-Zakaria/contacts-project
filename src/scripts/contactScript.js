@@ -18,7 +18,7 @@ function viewContactOnProfilePage(contactID){
 
 }
 
-function getContactByID(){
+function getContactByID(contactID){
 
     getcontactsArrayFromLocalStorage();
 
@@ -75,7 +75,7 @@ function createContactListItem(contact) {
     var motherListItem = $("<li class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
 
     // <a> tag that represents the name and contains the image
-    profileImageURL = contact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+    profileImageURL = contact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
     var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
 
     //the button on the right
@@ -90,9 +90,15 @@ function createContactListItem(contact) {
 }
 
 function createContact() {
-    con = new contact();
-    contacts.push(con);
-    addContactToList(con);
+    var id = getAutoGenratedId();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var email = $("#email").val();
+    var gender = $("#flip").val()
+    console.log("name");
+    var newContact = new contact(id, name, phone, email, gender);
+    contacts.push(newContact);
+    addContactToList(newContact);
     saveContactToLocalStorage();
 }
 
@@ -114,12 +120,6 @@ function getAutoGenratedId() {
     return idCounter;
 }
 
-function phoneValidation(phone) {
-    var isPhone = /^(01){1}\d{9}$/;
-    return isPhone.test(phone);
-
-}
-
 function nameValidation(name) {
     var hasnum = /\d/;
     fName = name.trim();
@@ -131,8 +131,12 @@ function nameValidation(name) {
     return false;
 }
 
-function emailValidation(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
+function onload(){
 
+    refresh();git 
+    // $("#saveBtn").bind( "click" , function () {
+    //     alert("ddd");
+    //     createContact();
+    // });
+
+}
