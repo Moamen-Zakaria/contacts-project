@@ -24,7 +24,6 @@
 <!--        <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div>-->
 <!--</li>-->
 
-<!--<section id="home" data-role="page">-->
 <section id="home" data-role="page">
 
     <header data-role="header">
@@ -61,52 +60,53 @@
 <!--////////////////-->
 
 <section id="createContact" data-role="page">
-    <header data-role="header">
-        Contact List
+    <header class="ui-header ui-bar-inherit" data-role="header" role="banner">
+        New Contact
     </header>
 
-    <form data-role="content">
-        <div class="box">
-            <label class="labels">Name :</label><br>
-            <label class="labels">Phone :</label><br>
-            <label class="labels">Email :</label><br>
-        </div>
+    <form class="ui-content" data-role="content" role="main">
 
 
-        <div class="box">
-            <input id="name" required="true" type="text"><br>
-            <input id="phone" type="text"><br>
-            <input id="email" required="true" type="text"><br>
-             
+        <div>
+            <!--contact Name-->
+            <label class="ui-hidden-accessible" for="un">contact name:</label>
+            <input data-theme="a" id="un" name="user" placeholder="username" type="text" value="">
+
+            <!--phone -->
+            <label class="ui-hidden-accessible" for="phone">phone :</label>
+            <input data-clear-btn="true" id="phone" name="phone" pattern="/^(01){1}\d{9}$/" placeholder="Phone Number"
+                   type="tel" value="">
+
+            <!--email-->
+            <label class="ui-hidden-accessible" for="email">email:</label>
+            <input data-clear-btn="true" id="email" name="email"
+                   pattern="/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/" placeholder="Email"
+                   type="email" value="">
+
+            <!--flip toggle-->
             <div class="ui-field-contain">
-                        <label for="flip-6">Gender:</label>
-                        <select data-role="flipswitch" id="flip-6" name="flip-6">
-                            
-                <option value="off">Male</option>
-                            
-                <option value="on">Femalee</option>
-                        </select>
-                    
+                <label class="ui-hidden-accessible" for="flip-6">Gender:</label>
+                <select class="ui-flipswitch-input" data-role="flipswitch" id="flip-6" name="flip-6" tabindex="-1">
+                    <option value="off">Male</option>
+                    <option value="on">Femalee</option>
+                </select>
+            </div>
+
+            <div data-type="horizontal">
+                <input data-icon="check" data-iconpos="right" data-inline="true" id="saveBtn" name="saveBtn"
+                       onclick="createContact()" type="button" value="Save Contact">
+                <div class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right">
+                    Cancle<input data-enhanced="true" id="cancleBtn" name="cancleBtn" onclick="cancle()" type="button"
+                                 value="Cancle">
+                </div>
             </div>
         </div>
-
-        <div class="twoBtn">
-            <input id="createContactBtn" onclick="createContact()" type="button" value="Save Contact">
-        </div>
-
-        <div class="twoBtn">
-            <input id="cancletBtn" onclick="cancle()" type="button" value="Cancle">
-        </div>
-
-
     </form>
 
-    <footer data-role="footer">
 
-        Contact List
-
+    <footer class="ui-footer ui-bar-inherit" data-role="footer" role="contentinfo">
+        New Contact
     </footer>
-
 </section>
 
 <!--////////////////-->
