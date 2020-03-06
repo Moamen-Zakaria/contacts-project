@@ -79,12 +79,6 @@ function getAutoGenratedId() {
     return idCounter;
 }
 
-function phoneValidation(phone) {
-    var isPhone = /^(01){1}\d{9}$/;
-    return isPhone.test(phone);
-
-}
-
 function nameValidation(name) {
     var hasnum = /\d/;
     fName = name.trim();
@@ -96,8 +90,4 @@ function nameValidation(name) {
     return false;
 }
 
-function emailValidation(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
 

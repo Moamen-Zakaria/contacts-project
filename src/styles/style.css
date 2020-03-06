@@ -52,12 +52,10 @@
 }
 
 
-#createContact .box {
-    float: left;
-}
-
-#createContact .twoBtn {
+#createContact #cancleBtn , #saveBtn {
     width: 30%;
     margin: 20px;
     float: left;
+    alignment: center;
 }
+
