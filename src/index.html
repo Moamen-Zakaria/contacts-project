@@ -12,49 +12,66 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body onload="onload()">
 
-<!--<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r"-->
-<!--    data-iconpos="right" data-theme="c"-->
-<!--    class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-count ui-li-has-icon ui-btn-up-c">-->
-<!--    <div class="ui-btn-inner ui-li">-->
-<!--        <div class="ui-btn-text"><a href="index.html" class="ui-link-inherit"><img src="images/gf.png" alt="France"-->
-<!--                                                                                   class="ui-li-icon ui-li-thumb">France-->
-<!--            <span class="ui-li-count ui-btn-up-c ui-btn-corner-all">4</span></a></div>-->
-<!--        <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div>-->
-<!--</li>-->
+<section data-role="page" id="home">
 
-<!--<section data-role="page" id="home">-->
+    <header data-role="header">
 
-<!--    <header data-role="header">-->
+        <a class="ui-btn-left" data-icon="plus" data-transition="flip" href="#createContact">Add</a>
 
-<!--        <a class="ui-btn-left" data-icon="plus" data-transition="flip" href="#createContact">Add</a>-->
+        Contact List
 
-<!--        Contact List-->
+    </header>
 
-<!--    </header>-->
+    <section data-role="content">
+        <ul data-filter="true" data-inset="true" data-role="listview" id="contactsList">
 
-<!--    <section data-role="content">-->
-<!--        <ul data-filter="true" data-inset="true" data-role="listview" id="contactsList">-->
+        </ul>
+    </section>
 
-<!--        </ul>-->
-<!--    </section>-->
+    <footer data-role="footer">
 
-<!--    <footer data-role="footer">-->
+        Contact List
 
-<!--        Contact List-->
+    </footer>
 
-<!--    </footer>-->
-
-<!--</section>-->
+</section>
 
 <!--////////////////-->
 <!--////////////////-->
 
-<!--<section data-role="page" id="profile">-->
+<section id="profile" data-role="page"  data-add-back-btn="true">
 
+    <header id="profileHeader"  data-role="header">
 
-<!--</section>-->
+        <a href="#home" data-icon="carat-l" data-transition="flip" class="ui-btn-left">Back</a>
+
+        <span id="profileName">ContactName</span>
+
+    </header>
+
+    <section data-role="content">
+
+        <img id="profileImage" src="styles/icons/female.svg">
+        <br/><br/>
+        <b>Email : <span id="profileEmail">navras@JunoReactor.com</span></b>
+
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="index.html" data-icon="delete" data-role="button"></a>
+            <a href="" data-icon="edit" data-role="button" ></a>
+            <a id="profileCallLink" href="index.html" data-icon="phone" data-role="button" ></a>
+        </div>
+
+    </section>
+
+    <footer data-role="footer">
+
+        Contact List
+
+    </footer>
+
+</section>
 
 <!--////////////////-->
 <!--////////////////-->

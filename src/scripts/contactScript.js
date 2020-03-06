@@ -5,7 +5,36 @@ let currentContactIDViewedInProfile;
 
 function viewContactOnProfilePage(contactID){
 
+    var profileContact = getContactByID(contactID);
+    if(contact != false){
 
+        profileImageURL = profileContact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+
+
+        $("#profileName").html(profileContact.name);
+        $("#profileCallLink").attr("href","tel:"+profileContact.phone);
+        $("#profileEmail").html(profileContact.email);
+        $("#profileImage").attr("src" , profileImageURL);
+
+    }
+
+}
+
+function getContactByID(contactID){
+
+    getcontactsArrayFromLocalStorage();
+
+    for(var i = 0 ; i < contacts.length ; i++){
+
+        if(contacts[i].id == contactID){
+
+            return contacts[i];
+
+        }
+
+    }
+
+    return false;
 
 }
 
@@ -15,7 +44,15 @@ function refresh() {
 }
 
 function getcontactsArrayFromLocalStorage() {
-    contacts = JSON.parse(localStorage.getItem("contacts"));
+    var arrayOfContacts  = localStorage.getItem("contacts");
+    if(arrayOfContacts != null){
+
+        contacts = JSON.parse(arrayOfContacts);
+
+    }else{
+
+        contacts = [];
+    }
 }
 
 function drawContactsList() {
@@ -40,8 +77,8 @@ function createContactListItem(contact) {
     var motherListItem = $("<li class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
 
     // <a> tag that represents the name and contains the image
-    profileImageURL = contact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-    var imageLink = $("<a id=" + contact.id + " onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
+    profileImageURL = contact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+    var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
 
     //the button on the right
     var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
@@ -54,10 +91,9 @@ function createContactListItem(contact) {
 
 }
 
-// $(document).ready( $("#saveBtn").bind("click", function () {
-//     createContact();
-// }));
-
+$("#saveBtn").bind("click", function (envent) {
+    createContact();
+});
 
 function createContact() {
     var id = getAutoGenratedId();
@@ -73,6 +109,11 @@ function createContact() {
     saveContactToLocalStorage();
 }
 
+function saveContactToLocalStorage() {
+    const myJson = JSON.stringify(contacts);
+    window.localStorage.setItem("contacts", myJson);
+}
+
 function contact(id, name, phone, email, gender) {
     this.id = id;
     this.name = name;
@@ -80,13 +121,6 @@ function contact(id, name, phone, email, gender) {
     this.phone = phone;
     this.gender = gender;
 }
-
-
-function saveContactToLocalStorage() {
-    const myJson = JSON.stringify(contacts);
-    window.localStorage.setItem("contacts", myJson);
-}
-
 
 function getAutoGenratedId() {
     idCounter++;
@@ -102,4 +136,14 @@ function nameValidation(name) {
         }
     }
     return false;
+}
+
+function onload(){
+
+    refresh();git
+    // $("#saveBtn").bind( "click" , function () {
+    //     alert("ddd");
+    //     createContact();
+    // });
+
 }
