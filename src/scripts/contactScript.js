@@ -1,6 +1,13 @@
 let contacts = [];
 let idCounter = 0;
 
+let currentContactIDViewedInProfile;
+
+function viewContactOnProfilePage(contactID){
+
+
+
+}
 
 function refresh() {
     getcontactsArrayFromLocalStorage();
@@ -34,7 +41,7 @@ function createContactListItem(contact) {
 
     // <a> tag that represents the name and contains the image
     profileImageURL = contact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-    var imageLink = $("<a id=" + contact.id + " class='ui-btn' href='#'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
+    var imageLink = $("<a id=" + contact.id + " onclick='viewContactOnProfilePage("+contact.id+")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
 
     //the button on the right
     var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
