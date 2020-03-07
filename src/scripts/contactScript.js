@@ -1,6 +1,27 @@
 let contacts = [];
 var errorTimeoutInstance;
 
+function deleteContact(id){
+
+    //delete from local storage
+    getcontactsArrayFromLocalStorage();
+    var contactIndex = contacts.findIndex((contact) => contact.id == id);
+    contacts.splice(contactIndex , 1);
+    saveContactToLocalStorage();
+
+    //delete from list in home
+    $("#" + id).remove();
+
+}
+
+function deleteContactHandler(){
+
+    var currentContactIDViewedInProfile = localStorage.getItem("currentContactIDViewedInProfile");
+    deleteContact(currentContactIDViewedInProfile);
+    $.mobile.changePage("#home", {transition: "flip"});
+
+}
+
 function viewContactOnProfilePage(contactID) {
 
     localStorage.setItem("currentContactIDViewedInProfile" , contactID);
@@ -9,7 +30,9 @@ function viewContactOnProfilePage(contactID) {
 
         profileImageURL = profileContact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
 
+        $("#profilePhone").html(profileContact.phone);
         $("#profileName").html(profileContact.name);
+        $("#profileName2").html(profileContact.name);
         $("#profileCallLink").attr("href", "tel:" + profileContact.phone);
         $("#profileEmail").html(profileContact.email);
         $("#profileImage").attr("src", profileImageURL);
@@ -59,10 +82,10 @@ function addContactToList(contact) {
 ////creating node html
 function createContactListItem(contact) {
     //most parent element in a list row
-    var motherListItem = $("<li class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
+    var motherListItem = $("<li  id=" + contact.id + "  class='ui-li-has-alt ui-li-has-thumb ui-first-child'></li>");
     // <a> tag that represents the name and contains the image
     profileImageURL = contact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-    var imageLink = $("<a id=" + contact.id + " data-transition='flip' onclick='viewContactOnProfilePage(" + contact.id + ")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
+    var imageLink = $("<a data-transition='flip' onclick='viewContactOnProfilePage(" + contact.id + ")' class='ui-btn' href='#profile'> <img src=" + profileImageURL + " /> " + contact.name + " </a>");
     //the button on the right
     var button = $("<a href='tel:" + contact.phone + "' data-role='button' data-icon='phone' " +
         "class='ui-btn ui-btn-icon-notext ui-icon-phone' title=''></a>");
