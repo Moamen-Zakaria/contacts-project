@@ -1,9 +1,9 @@
 let contacts = [];
 var errorTimeoutInstance;
-let currentContactIDViewedInProfile;
 
 function viewContactOnProfilePage(contactID) {
 
+    localStorage.setItem("currentContactIDViewedInProfile" , contactID);
     var profileContact = getContactByID(contactID);
     if (contact != false) {
 
@@ -213,10 +213,7 @@ function nameValidation(name) {
 ////function to refresh the list in first page
 function onload() {
 
+    viewContactOnProfilePage(localStorage.getItem("currentContactIDViewedInProfile"));
     refresh();
-    // $("#saveBtn").bind( "click" , function () {
-    //     alert("ddd");
-    //     createContact();
-    // });
 
 }
