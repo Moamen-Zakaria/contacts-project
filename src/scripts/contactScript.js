@@ -1,5 +1,4 @@
 let contacts = [];
-var idCounter = 0;
 var errorTimeoutInstance;
 let currentContactIDViewedInProfile;
 
@@ -8,7 +7,7 @@ function viewContactOnProfilePage(contactID) {
     var profileContact = getContactByID(contactID);
     if (contact != false) {
 
-        profileImageURL = profileContact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
+        profileImageURL = profileContact.gender == "Male" ? "styles/icons/male.png" : "styles/icons/female.svg";
 
         $("#profileName").html(profileContact.name);
         $("#profileCallLink").attr("href", "tel:" + profileContact.phone);
@@ -98,15 +97,15 @@ function createContact() {
         contacts.push(newContact);
         addContactToList(newContact);
         saveContactToLocalStorage();
-        $.mobile.changePage( "#home", { transition: "flip"});
+        $.mobile.changePage("#home", {transition: "flip"});
         clearAddContactPage();
 
     }
 }
 
-function addContactCancelButtonHandler(){
+function addContactCancelButtonHandler() {
 
-    $.mobile.changePage( "#home", { transition: "flip"});
+    $.mobile.changePage("#home", {transition: "flip"});
     clearAddContactPage();
 
 }
@@ -188,8 +187,16 @@ function contact(id, name, phone, email, gender) {
 
 /// function to generate  ids
 function getAutoGenratedId() {
-    idCounter++;
-    return idCounter;
+
+    var maxID = 0;
+    getcontactsArrayFromLocalStorage();
+    for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].id > maxID) {
+            maxID = contacts[i].id;
+        }
+    }
+    return ++maxID;
+
 }
 
 function nameValidation(name) {
