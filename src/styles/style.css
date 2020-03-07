@@ -33,6 +33,15 @@
 }
 
 
+#invalidErrorMessage{
+
+    color: crimson;
+    margin-left: 7px;
+    font-weight: bold;
+    display: none;
+
+}
+
 /*Naggar*/
 
 #createContact header {

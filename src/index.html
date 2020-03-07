@@ -99,16 +99,15 @@
 
 <section id="createContact" data-role="page">
     <header class="ui-header ui-bar-inherit" data-role="header" role="banner">
-        <a class="ui-btn-left" data-icon="arrow-l" data-transition="flip" href="#home">Back</a>
+        <a onclick="addContactCancelButtonHandler()" class="ui-btn-left" data-icon="arrow-l" data-transition="flip" href="#home">Back</a>
         New Contact
     </header>
 
     <form class="ui-content" data-role="content" id="newContactForm" role="main">
 
-        <div>
             <!--contact Name-->
             <label class="ui-hidden-accessible" for="name">contact name:</label>
-            <input data-theme="a" id="name" name="name" placeholder="username" type="text" value="">
+            <input data-clear-btn="true" data-theme="a" id="name" name="name" placeholder="username" type="text" value="">
 
             <!--phone -->
             <label class="ui-hidden-accessible" for="phone">phone :</label>
@@ -133,10 +132,12 @@
             <div data-type="horizontal">
                 <a class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-check ui-btn-icon-right"
                    data-role="button" onclick="createContact()">Save Contact</a>
-                <a class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right"
-                   data-role="button" data-transition="flip" href="#home">Cacle</a>
+                <a onclick="addContactCancelButtonHandler()" class="ui-input-btn ui-btn ui-btn-inline ui-corner-all  ui-icon-delete ui-btn-icon-right"
+                   data-role="button" data-transition="flip" href="#home">Cancel</a>
             </div>
-        </div>
+
+        <label id="invalidErrorMessage"></label>
+
     </form>
 
     <footer class="ui-footer ui-bar-inherit" data-role="footer" role="contentinfo">

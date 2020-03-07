@@ -1,6 +1,6 @@
 let contacts = [];
 var idCounter = 0;
-
+var errorTimeoutInstance;
 let currentContactIDViewedInProfile;
 
 function viewContactOnProfilePage(contactID) {
@@ -9,7 +9,6 @@ function viewContactOnProfilePage(contactID) {
     if (contact != false) {
 
         profileImageURL = profileContact.gender == "male" ? "styles/icons/male.png" : "styles/icons/female.svg";
-
 
         $("#profileName").html(profileContact.name);
         $("#profileCallLink").attr("href", "tel:" + profileContact.phone);
@@ -73,18 +72,103 @@ function createContactListItem(contact) {
     return motherListItem;
 }
 
+
+function clearAddContactPage() {
+
+    var name = $("#name").val("");
+    var phone = $("#phone").val("");
+    var email = $("#email").val("");
+    $("#invalidErrorMessage").html("");
+
+}
+
+
 // getting data from the form
 function createContact() {
-    var id = getAutoGenratedId();
-    var name = $("#name").val();
-    var phone = $("#phone").val();
-    var email = $("#email").val();
-    var gender = $("#flip").val()
-    console.log("name");
-    var newContact = new contact(id, name, phone, email, gender);
-    contacts.push(newContact);
-    addContactToList(newContact);
-    saveContactToLocalStorage();
+
+    if (isDataInputValid()) {
+
+        var id = getAutoGenratedId();
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var gender = $("#flip").val();
+        var newContact = new contact(id, name, phone, email, gender);
+
+        contacts.push(newContact);
+        addContactToList(newContact);
+        saveContactToLocalStorage();
+        $.mobile.changePage( "#home", { transition: "flip"});
+        clearAddContactPage();
+
+    }
+}
+
+function addContactCancelButtonHandler(){
+
+    $.mobile.changePage( "#home", { transition: "flip"});
+    clearAddContactPage();
+
+}
+
+function isDataInputValid() {
+
+    var isValid = true;
+
+    if (!(/^[a-zA-Z ]{2,30}$/.test($("#name").val().trim()))) {
+
+        isValid = false;
+        printErrorMessage("Sorry but the user name is not valid");
+
+    }
+
+    if (isValid && !(/^(01){1}\d{9}$/.test($("#phone").val().trim()))) {
+
+        isValid = false;
+        printErrorMessage("Invalid phone");
+
+    }
+
+    if (isValid && isPhoneDuplicate($("#phone").val().trim())) {
+
+        isValid = false;
+        printErrorMessage("Phone number already registered");
+
+    }
+
+    if (isValid && !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#email").val().trim()))) {
+
+        isValid = false;
+        printErrorMessage("Invalid email address");
+
+    }
+
+    return isValid;
+}
+
+function isPhoneDuplicate(phone) {
+
+    getcontactsArrayFromLocalStorage();
+
+    for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].phone == phone) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function printErrorMessage(message) {
+
+    clearTimeout(errorTimeoutInstance);
+    $("#invalidErrorMessage").html(message);
+    $("#invalidErrorMessage").fadeIn("slow")
+    errorTimeoutInstance = setTimeout(function () {
+
+        $("#invalidErrorMessage").fadeOut("slow");
+
+    }, 10_000);
+
 }
 
 ////save object to local storage
